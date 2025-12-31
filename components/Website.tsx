@@ -80,18 +80,15 @@ export const Website: React.FC<WebsiteProps> = ({ onLoginClick }) => {
                 Top Rated Billing Software 2024
               </div>
               <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
-                India's Best <span className="text-indigo-600">GST Billing Software</span> for Distributors
+                Best <span className="text-indigo-600">Billing Software India</span> - Free GST Invoice App for Distributors
               </h1>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0">
-                Stop using manual registers. Switch to Vyapaar Mitra—the offline-first Inventory Management & Invoicing App designed for Indian Business.
+                India's #1 free billing software for distributors, wholesalers & shopkeepers. Create GST invoices offline, manage inventory, track payments. Best billing app for PC & mobile. Download free billing software now.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button onClick={onLoginClick} size="lg" className="shadow-xl shadow-indigo-200">
-                  Download App Free <ArrowRight className="ml-2" size={20} />
+              <div className="flex justify-center lg:justify-start">
+                <Button onClick={onLoginClick} size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-200 px-8 py-4 text-lg font-bold">
+                  Start Demo <ArrowRight className="ml-2" size={20} />
                 </Button>
-                <button className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg border-2 border-gray-200 font-bold text-gray-700 hover:bg-gray-50 transition-colors">
-                  <Play size={20} className="fill-gray-700" /> Watch Demo
-                </button>
               </div>
               <p className="text-sm text-gray-500">
                 <CheckCircle size={14} className="inline text-green-500 mr-1"/> Lifetime Free Plan Available
@@ -245,8 +242,8 @@ export const Website: React.FC<WebsiteProps> = ({ onLoginClick }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
              <h2 className="text-indigo-600 font-bold tracking-wide uppercase text-sm">Key Features</h2>
-             <h2 className="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Complete Billing & Inventory Solution</h2>
-             <p className="mt-4 text-xl text-gray-500">Why thousands of wholesalers choose our Billing App over manual books.</p>
+             <h2 className="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Best Billing Software Features for Distributors</h2>
+             <p className="mt-4 text-xl text-gray-500">Complete billing software solution with GST invoicing, inventory management, and payment tracking. Why thousands of wholesalers choose our billing app over manual books.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -275,9 +272,9 @@ export const Website: React.FC<WebsiteProps> = ({ onLoginClick }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
-                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Why switch from Manual Billing to Vyapaar Mitra Software?</h2>
+                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Switch to Best Billing Software India - Vyapaar Mitra?</h2>
                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    Traditional "Kaccha Bill" and manual registers are prone to errors and theft. Vyapaar Mitra is the best <strong>GST billing software for PC and Mobile</strong> that automates your entire distribution business.
+                    Traditional "Kaccha Bill" and manual registers are prone to errors and theft. Vyapaar Mitra is India's best <strong>billing software for distributors</strong> and <strong>best billing software for shopkeepers</strong>. This <strong>free billing software for PC and mobile</strong> automates your entire distribution business with GST invoicing, inventory tracking, and payment management.
                  </p>
                  <ul className="space-y-4">
                     {[
@@ -333,8 +330,8 @@ export const Website: React.FC<WebsiteProps> = ({ onLoginClick }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="text-center max-w-3xl mx-auto mb-16">
              <span className="text-indigo-600 font-bold tracking-wide uppercase text-sm">Affordable Pricing</span>
-             <h2 className="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Billing Software Price Plans</h2>
-             <p className="mt-4 text-xl text-gray-500">Choose the best plan for your business. No hidden charges.</p>
+             <h2 className="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Best Billing Software Price Plans - Free & Paid</h2>
+             <p className="mt-4 text-xl text-gray-500">Choose the best billing software plan for your business. Free billing software for small shops. Affordable pricing for distributors. No hidden charges.</p>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -459,11 +456,15 @@ export const Website: React.FC<WebsiteProps> = ({ onLoginClick }) => {
            
            <div className="space-y-4">
               {[
-                { q: "Is this billing software free to download?", a: "Yes, Vyapaar Mitra offers a free trial version for all distributors. You can download the app and start creating GST invoices immediately without entering credit card details." },
-                { q: "Does Vyapaar Mitra work without internet (Offline)?", a: "Absolutely. We are an 'Offline-First' billing software. You can create bills, manage inventory, and take orders without internet. Data syncs to the cloud automatically when you connect to Wi-Fi." },
-                { q: "Can I manage GSTR-1 and GSTR-3B filing?", a: "Yes, our GST billing software automatically generates GSTR-1, GSTR-2B, and GSTR-3B reports in Excel/JSON format, compatible with the government GST portal." },
-                { q: "Is this app suitable for mobile and PC?", a: "Yes, Vyapaar Mitra is a cross-platform solution. You can use the Android App for field sales and the Web Dashboard (PC) for admin and inventory management." },
-                { q: "How secure is my business data?", a: "Your data is 100% secure with bank-grade encryption. We take daily automatic backups so you never lose your 'Hisaab Kitaab'." }
+                { q: "Which is the best billing software in India?", a: "Vyapaar Mitra is India's #1 best billing software for distributors, wholesalers, and shopkeepers. It's free, works offline, generates GST invoices, and manages inventory. Best billing software for small business in India." },
+                { q: "Is this billing software free to download?", a: "Yes, Vyapaar Mitra offers completely free billing software for small businesses. Download the best free billing software for distributors and start creating GST invoices immediately. No credit card required." },
+                { q: "What is the best billing software for shopkeepers?", a: "Vyapaar Mitra is the best billing software for shopkeepers in India. It's free, works offline, generates professional GST invoices in seconds, tracks inventory automatically, and sends payment reminders. Perfect billing app for small shops." },
+                { q: "Does billing software work without internet (Offline)?", a: "Yes, Vyapaar Mitra is the best offline billing software. You can create bills, manage inventory, track payments, and generate invoices without internet. Data syncs automatically when you connect to WiFi. Best offline billing software for PC and mobile." },
+                { q: "Can I manage GSTR-1 and GSTR-3B filing with billing software?", a: "Yes, Vyapaar Mitra billing software automatically generates GSTR-1, GSTR-2B, and GSTR-3B reports in Excel/JSON format, compatible with the GST portal. Best GST billing software for easy tax filing." },
+                { q: "Is billing software available for mobile and PC?", a: "Yes, Vyapaar Mitra is the best billing software for both PC and mobile. Use Android app for field sales and web dashboard (PC) for inventory management. Best cross-platform billing app for distributors." },
+                { q: "How to download free billing software?", a: "Download Vyapaar Mitra free billing software from vyapaarmitr.com. It's completely free with unlimited invoices, inventory tracking, and GST reports. Best free billing software download for Indian businesses." },
+                { q: "What is the best invoice software for small business?", a: "Vyapaar Mitra is the best invoice software for small businesses in India. It's free, generates professional GST invoices, tracks payments, manages inventory, and works offline. Perfect billing software for small shops and traders." },
+                { q: "How secure is my business data in billing software?", a: "Your data is 100% secure with bank-grade encryption. We take daily automatic backups so you never lose your business data. Best secure billing software for Indian distributors." }
               ].map((faq, i) => (
                 <div key={i} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm transition-all hover:shadow-md">
                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-start gap-3">
