@@ -176,6 +176,9 @@ const App: React.FC = () => {
   const totalUdhaar = retailers.reduce((acc, r) => acc + r.outstandingBalance, 0);
   const lowStockItems = products.filter(p => p.stock < p.minLevel).length;
 
+  // Calculate estimated profit for the month (mock logic + existing orders)
+  const monthlyProfit = orders.reduce((acc, o) => acc + (o.finalAmount * (o.profitMargin || 20) / 100), 0) + 45800; 
+
   const handlePaymentCollect = (amount: number, mode: PaymentMode, retailerId: string) => {
      setRetailers(prev => prev.map(r => 
         r.id === retailerId ? { ...r, outstandingBalance: r.outstandingBalance - amount } : r
@@ -298,13 +301,13 @@ const App: React.FC = () => {
              <h1 className="text-3xl font-bold text-gray-900">Ram Ram, Rajesh!</h1>
              <p className="text-gray-500 mt-1">Business ki aaj ki taaza report.</p>
          </div>
-         <div className="bg-white px-5 py-3 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
-             <div className="p-2.5 bg-indigo-50 rounded-lg text-indigo-600">
-                <Clock size={24} />
+         <div className="bg-white px-6 py-4 rounded-xl border border-green-100 shadow-sm flex items-center gap-4 bg-gradient-to-r from-green-50 to-white">
+             <div className="p-3 bg-green-100 rounded-full text-green-700">
+                <IndianRupee size={28} />
              </div>
              <div>
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">AGLA MAAL KAB AAYEGA</p>
-                <p className="font-bold text-gray-900 text-base">Tomorrow, 10:00 AM</p>
+                <p className="text-xs font-bold text-green-700 uppercase tracking-wider mb-1">Your Earning (This Month)</p>
+                <h3 className="font-extrabold text-gray-900 text-2xl">₹{monthlyProfit.toLocaleString()}</h3>
              </div>
          </div>
       </div>

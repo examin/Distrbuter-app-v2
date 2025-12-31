@@ -119,9 +119,15 @@ export const Website: React.FC<WebsiteProps> = ({ onLoginClick }) => {
                              <div className="w-5 h-5 bg-blue-500 rounded-full text-[8px] flex items-center justify-center font-bold">RK</div>
                           </div>
                        </div>
-                       <div className="mb-2">
-                          <p className="text-[10px] text-indigo-200">Total Sales Today</p>
-                          <h2 className="text-2xl font-bold">₹42,500</h2>
+                       <div className="flex justify-between items-end mb-2">
+                          <div>
+                             <p className="text-[10px] text-indigo-200">Total Sales Today</p>
+                             <h2 className="text-xl font-bold">₹12,500</h2>
+                          </div>
+                          <div className="text-right">
+                             <p className="text-[10px] text-green-300">Your Earning</p>
+                             <h2 className="text-xl font-bold">₹42,500</h2>
+                          </div>
                        </div>
                     </div>
 
@@ -189,20 +195,24 @@ export const Website: React.FC<WebsiteProps> = ({ onLoginClick }) => {
                        {/* Recent Orders List */}
                        <div className="space-y-2">
                           <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Recent Transactions</p>
-                          {[1,2,3].map((i) => (
+                          {[
+                            { name: "Aggarwal Gen. Store", amount: "₹4,200", initial: "A", bg: "bg-pink-100", text: "text-pink-600", status: "Paid" },
+                            { name: "Ram Mandir Store", amount: "₹1,850", initial: "R", bg: "bg-blue-100", text: "text-blue-600", status: "Paid" },
+                            { name: "Hotel Krishna Palace", amount: "₹12,400", initial: "H", bg: "bg-green-100", text: "text-green-600", status: "Pending" }
+                          ].map((t, i) => (
                              <div key={i} className="bg-white p-2 rounded-lg border border-gray-100 flex items-center justify-between shadow-sm">
                                 <div className="flex items-center gap-2">
-                                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs ${i===1 ? 'bg-pink-100 text-pink-600' : i===2 ? 'bg-blue-100 text-blue-600' : 'bg-green-100 text-green-600'}`}>
-                                      {String.fromCharCode(64+i)}
+                                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs ${t.bg} ${t.text}`}>
+                                      {t.initial}
                                    </div>
                                    <div>
-                                      <p className="text-[10px] font-bold text-gray-800">Shop {i}</p>
+                                      <p className="text-[10px] font-bold text-gray-800">{t.name}</p>
                                       <p className="text-[8px] text-gray-400">Just now</p>
                                    </div>
                                 </div>
                                 <div className="text-right">
-                                   <p className="text-[10px] font-bold text-gray-800">₹{i * 1500}</p>
-                                   <span className="text-[8px] text-green-600 bg-green-50 px-1 rounded">Paid</span>
+                                   <p className="text-[10px] font-bold text-gray-800">{t.amount}</p>
+                                   <span className={`text-[8px] px-1 rounded ${t.status === 'Paid' ? 'text-green-600 bg-green-50' : 'text-orange-600 bg-orange-50'}`}>{t.status}</span>
                                 </div>
                              </div>
                           ))}
