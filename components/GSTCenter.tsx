@@ -1,31 +1,8 @@
-import React, { useState } from 'react';
-import { Send, FileText, CheckCircle, AlertOctagon } from 'lucide-react';
-import { Button } from './Button';
-import { askGstQuestion } from '../services/geminiService';
+import React from 'react';
 
 export const GSTCenter = () => {
-  const [query, setQuery] = useState('');
-  const [chatHistory, setChatHistory] = useState<{role: 'user' | 'bot', text: string}[]>([
-     { role: 'bot', text: 'Namaste! I am your GST Mitra. Ask me anything about tax rates or filing.' }
-  ]);
-  const [loading, setLoading] = useState(false);
-
-  const handleSend = async () => {
-     if(!query.trim()) return;
-     const userMsg = query;
-     setChatHistory(prev => [...prev, { role: 'user', text: userMsg }]);
-     setQuery('');
-     setLoading(true);
-     
-     const answer = await askGstQuestion(userMsg);
-     setChatHistory(prev => [...prev, { role: 'bot', text: answer }]);
-     setLoading(false);
-  };
-
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[80vh]">
-       {/* Left: Data (2/3) */}
-       <div className="lg:col-span-2 space-y-6 overflow-y-auto pr-2">
+    <div className="space-y-6 overflow-y-auto">
           <h2 className="text-2xl font-bold text-gray-900">GST Compliance Center</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -71,44 +48,6 @@ export const GSTCenter = () => {
                 </tbody>
              </table>
           </div>
-       </div>
-
-       {/* Right: AI Chatbot (1/3) */}
-       <div className="bg-white rounded-xl border border-gray-200 shadow-lg flex flex-col overflow-hidden h-full">
-          <div className="p-4 bg-indigo-600 text-white flex items-center gap-2 shadow-md">
-             <div className="p-1.5 bg-white/20 rounded-full"><CheckCircle size={16}/></div>
-             <span className="font-bold">GST Mitra AI</span>
-          </div>
-          
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
-             {chatHistory.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                   <div className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed ${
-                      msg.role === 'user' 
-                      ? 'bg-indigo-600 text-white rounded-tr-none' 
-                      : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none shadow-sm'
-                   }`}>
-                      {msg.text}
-                   </div>
-                </div>
-             ))}
-             {loading && <div className="text-xs text-gray-400 italic ml-2">Typing...</div>}
-          </div>
-
-          <div className="p-3 bg-white border-t flex gap-2">
-             <input 
-                type="text" 
-                className="flex-1 bg-gray-100 border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
-                placeholder="Poocho (e.g. HSN for Rice?)"
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleSend()}
-             />
-             <button onClick={handleSend} disabled={loading} className="p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 disabled:opacity-50 transition-colors">
-                <Send size={18} />
-             </button>
-          </div>
-       </div>
     </div>
   );
 };

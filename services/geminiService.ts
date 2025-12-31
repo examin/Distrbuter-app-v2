@@ -4,7 +4,12 @@ import { Order, Retailer, Product } from '../types';
 // Initialize the API client. 
 // In a real app, strict error handling for missing keys is needed.
 const getClient = () => {
-    const apiKey = process.env.API_KEY || ''; 
+    // Vite exposes env vars prefixed with VITE_ to the client
+    // For Cloudflare Pages, set VITE_GEMINI_API_KEY in environment variables
+    // Fallback support for build-time replacement via define
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 
+                   (import.meta.env as any).GEMINI_API_KEY || 
+                   ''; 
     // We proceed even if empty to prevent crash on startup, but calls will fail if not set.
     return new GoogleGenAI({ apiKey });
 };
@@ -45,17 +50,3 @@ export const getBusinessInsights = async (
     }
 };
 
-export const askGstQuestion = async (question: string): Promise<string> => {
-    try {
-        const client = getClient();
-        const response: GenerateContentResponse = await client.models.generateContent({
-            model: 'gemini-3-flash-preview',
-            contents: `You are a GST expert for Indian small businesses. 
-            Answer this question simply in "Hinglish" (English with Hindi terms where helpful): "${question}"`,
-        });
-        return response.text || "No answer generated.";
-    } catch (error) {
-        console.error("GST Service Error:", error);
-        return "Error connecting to GST AI assistant.";
-    }
-};
