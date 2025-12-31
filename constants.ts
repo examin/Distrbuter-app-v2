@@ -6,47 +6,95 @@ export const MOCK_GODOWNS: Godown[] = [
 ];
 
 export const MOCK_COMPANIES: Company[] = [
+  { id: 'c5', name: 'Vanesa Care Pvt Ltd', repName: 'Anil Malhotra', repPhone: '9876500005', avgMargin: 22, productCount: 50, lastOrderDate: '2023-10-25' },
   { id: 'c1', name: 'Hindustan Unilever', repName: 'Rahul Verma', repPhone: '9876500001', avgMargin: 12, productCount: 45, lastOrderDate: '2023-10-20' },
   { id: 'c2', name: 'ITC Limited', repName: 'Amit Singh', repPhone: '9876500002', avgMargin: 15, productCount: 30, lastOrderDate: '2023-10-22' },
-  { id: 'c3', name: 'Parle Products', repName: 'Vikas Gupta', repPhone: '9876500003', avgMargin: 10, productCount: 12, lastOrderDate: '2023-10-18' },
 ];
 
 export const MOCK_PRODUCTS: Product[] = [
+  // --- Pour Drive / Home (Air Care) ---
+  { 
+    id: 'ph-01', name: 'Pour Drive Nector Home Black Dusk 10g', sku: 'PD-BD-10', 
+    price: 65, mrp: 85, landingCost: 45.00, gstRate: 18, offer: "Buy 10 Get 1",
+    stock: 200, minLevel: 50, category: 'Air Care', companyId: 'c5',
+    batches: [{ id: 'b1', batchNumber: 'B001', expiryDate: '2025-12-31', quantity: 200, godownId: 'g1' }]
+  },
+  { 
+    id: 'ph-02', name: 'Pour Home Room Freshener Jasmine 220ml', sku: 'PH-RF-JAS', 
+    price: 125, mrp: 160, landingCost: 95.00, gstRate: 18,
+    stock: 150, minLevel: 30, category: 'Air Care', companyId: 'c5',
+    batches: [{ id: 'b2', batchNumber: 'B002', expiryDate: '2025-10-30', quantity: 150, godownId: 'g1' }]
+  },
+  { 
+    id: 'ph-03', name: 'Pour Home Blocks Flora Fusion Rose Lime 50g', sku: 'PH-BLK-RL', 
+    price: 55, mrp: 70, landingCost: 38.00, gstRate: 18,
+    stock: 300, minLevel: 60, category: 'Air Care', companyId: 'c5',
+    batches: [{ id: 'b3', batchNumber: 'B003', expiryDate: '2025-06-30', quantity: 300, godownId: 'g1' }]
+  },
+  { 
+    id: 'ph-04', name: 'Pour Home Nector Morning Breeze 10g', sku: 'PH-NEC-MB', 
+    price: 65, mrp: 85, landingCost: 45.00, gstRate: 18,
+    stock: 40, minLevel: 50, category: 'Air Care', companyId: 'c5', // Low Stock
+    batches: [{ id: 'b4', batchNumber: 'B004', expiryDate: '2025-08-15', quantity: 40, godownId: 'g2' }]
+  },
+  { 
+    id: 'ph-05', name: 'Pour Home Room Freshener French Fusion 220ml', sku: 'PH-RF-FRE', 
+    price: 125, mrp: 160, landingCost: 95.00, gstRate: 18, offer: "Flat 5% Off",
+    stock: 120, minLevel: 30, category: 'Air Care', companyId: 'c5',
+    batches: [{ id: 'b5', batchNumber: 'B005', expiryDate: '2025-09-30', quantity: 120, godownId: 'g1' }]
+  },
+  { 
+    id: 'ph-06', name: 'Pour Home Neo Air Citron Twist 7.5g', sku: 'PH-NEO-CT', 
+    price: 45, mrp: 60, landingCost: 32.00, gstRate: 18,
+    stock: 500, minLevel: 100, category: 'Air Care', companyId: 'c5',
+    batches: [{ id: 'b6', batchNumber: 'B006', expiryDate: '2025-11-30', quantity: 500, godownId: 'g2' }]
+  },
+
+  // --- Vanesa (Personal Care) ---
+  { 
+    id: 'va-01', name: 'Vanesa Body Wash 100ml', sku: 'VA-BW-100', 
+    price: 90, mrp: 120, landingCost: 65.00, gstRate: 18,
+    stock: 80, minLevel: 20, category: 'Personal Care', companyId: 'c5',
+    batches: [{ id: 'b7', batchNumber: 'B007', expiryDate: '2025-05-30', quantity: 80, godownId: 'g1' }]
+  },
+  { 
+    id: 'va-02', name: 'Vanesa Perfume Grace 60ml', sku: 'VA-PER-GR', 
+    price: 180, mrp: 249, landingCost: 135.00, gstRate: 18, offer: "Buy 6 Get 1 Tester",
+    stock: 60, minLevel: 15, category: 'Perfume', companyId: 'c5',
+    batches: [{ id: 'b8', batchNumber: 'B008', expiryDate: '2026-01-30', quantity: 60, godownId: 'g1' }]
+  },
+  { 
+    id: 'va-03', name: 'Vanesa Deo Babe 150ml', sku: 'VA-DEO-BB', 
+    price: 150, mrp: 199, landingCost: 110.00, gstRate: 18,
+    stock: 200, minLevel: 50, category: 'Deodorant', companyId: 'c5',
+    batches: [{ id: 'b9', batchNumber: 'B009', expiryDate: '2025-12-31', quantity: 200, godownId: 'g1' }]
+  },
+  { 
+    id: 'va-04', name: 'Vanesa Deo Nano Queen 30ml', sku: 'VA-NANO-QN', 
+    price: 60, mrp: 85, landingCost: 40.00, gstRate: 18,
+    stock: 400, minLevel: 100, category: 'Deodorant', companyId: 'c5',
+    batches: [{ id: 'b10', batchNumber: 'B010', expiryDate: '2025-08-30', quantity: 400, godownId: 'g2' }]
+  },
+  { 
+    id: 'va-05', name: 'Vanesa Pocket Perfume Diva 18ml', sku: 'VA-PKT-DIV', 
+    price: 45, mrp: 60, landingCost: 30.00, gstRate: 18,
+    stock: 600, minLevel: 100, category: 'Perfume', companyId: 'c5',
+    batches: [{ id: 'b11', batchNumber: 'B011', expiryDate: '2025-11-15', quantity: 600, godownId: 'g2' }]
+  },
+  { 
+    id: 'va-06', name: 'Vanesa Perfume Desire 100ml', sku: 'VA-PER-DES', 
+    price: 350, mrp: 499, landingCost: 260.00, gstRate: 18,
+    stock: 25, minLevel: 10, category: 'Perfume', companyId: 'c5',
+    batches: [{ id: 'b12', batchNumber: 'B012', expiryDate: '2026-03-30', quantity: 25, godownId: 'g1' }]
+  },
+  
+  // --- Other Basics (Retained for variety) ---
   { 
     id: 'p1', name: 'Parle-G Gold 100g', sku: 'PG100', 
-    price: 10, mrp: 12, landingCost: 8.50, gstRate: 18, offer: "Buy 1 carton Get 2pkts Free",
+    price: 10, mrp: 12, landingCost: 8.50, gstRate: 18, 
     stock: 500, minLevel: 100, category: 'Biscuits', companyId: 'c3',
-    batches: [
-      { id: 'b1', batchNumber: 'BATCH-001', expiryDate: '2024-12-31', quantity: 300, godownId: 'g1' },
-      { id: 'b2', batchNumber: 'BATCH-002', expiryDate: '2025-06-30', quantity: 200, godownId: 'g2' }
-    ]
-  },
-  { 
-    id: 'p2', name: 'Tata Salt 1kg', sku: 'TS1KG', 
-    price: 25, mrp: 28, landingCost: 21.00, gstRate: 0,
-    stock: 30, minLevel: 50, category: 'Grocery', companyId: 'c2', // Low Stock
-    batches: [
-      { id: 'b3', batchNumber: 'TS-JAN', expiryDate: '2025-01-15', quantity: 30, godownId: 'g1' }
-    ]
-  },
-  { 
-    id: 'p3', name: 'Maggi Masala 70g', sku: 'MM70', 
-    price: 12, mrp: 14, landingCost: 9.80, gstRate: 12, offer: "Flat 2% Off on Bulk",
-    stock: 1000, minLevel: 200, category: 'Snacks', companyId: 'c2',
-    batches: [
-      { id: 'b4', batchNumber: 'MM-OCT', expiryDate: '2023-10-30', quantity: 500, godownId: 'g1' },
-      { id: 'b5', batchNumber: 'MM-NOV', expiryDate: '2024-11-30', quantity: 500, godownId: 'g1' }
-    ]
-  },
-  { 
-    id: 'p4', name: 'Red Label Tea 250g', sku: 'RL250', 
-    price: 120, mrp: 145, landingCost: 98.50, gstRate: 5,
-    stock: 150, minLevel: 50, category: 'Beverages', companyId: 'c1',
-    batches: [
-      { id: 'b6', batchNumber: 'RL-2023', expiryDate: '2024-08-15', quantity: 100, godownId: 'g2' },
-      { id: 'b7', batchNumber: 'RL-2024', expiryDate: '2025-08-15', quantity: 50, godownId: 'g1' }
-    ]
-  },
+    batches: [{ id: 'b13', batchNumber: 'B013', expiryDate: '2024-12-31', quantity: 500, godownId: 'g1' }]
+  }
 ];
 
 export const MOCK_RETAILERS: Retailer[] = [
@@ -70,13 +118,13 @@ export const MOCK_ORDERS: Order[] = [
     date: '2023-10-24',
     status: OrderStatus.APPROVED,
     items: [
-      { productId: 'p1', productName: 'Parle-G Gold 100g', quantity: 50, unitPrice: 10, total: 500 },
-      { productId: 'p3', productName: 'Maggi Masala 70g', quantity: 20, unitPrice: 12, total: 240 },
+      { productId: 'ph-01', productName: 'Pour Drive Nector Home Black Dusk 10g', quantity: 20, unitPrice: 65, total: 1300 },
+      { productId: 'va-01', productName: 'Vanesa Body Wash 100ml', quantity: 10, unitPrice: 90, total: 900 },
     ],
-    totalAmount: 740,
+    totalAmount: 2200,
     discount: 0,
-    finalAmount: 740,
-    profitMargin: 18,
+    finalAmount: 2200,
+    profitMargin: 25,
     paymentStatus: 'Unpaid',
     podStatus: 'Pending',
     createdBy: 'Vikram Singh',
@@ -90,12 +138,12 @@ export const MOCK_ORDERS: Order[] = [
     date: '2023-10-25',
     status: OrderStatus.PENDING,
     items: [
-      { productId: 'p2', productName: 'Tata Salt 1kg', quantity: 10, unitPrice: 25, total: 250 },
+      { productId: 'ph-02', productName: 'Pour Home Room Freshener Jasmine 220ml', quantity: 5, unitPrice: 125, total: 625 },
     ],
-    totalAmount: 250,
-    discount: 10,
-    finalAmount: 240,
-    profitMargin: 12,
+    totalAmount: 625,
+    discount: 25,
+    finalAmount: 600,
+    profitMargin: 20,
     paymentStatus: 'Paid',
     podStatus: 'Verified',
     createdBy: 'Vikram Singh',

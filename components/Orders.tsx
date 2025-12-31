@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Search, Filter, Download, Plus, MapPin, Eye, Camera, MessageCircle, Phone, 
-  Wifi, WifiOff, X, Check, Truck, Edit2
+  Wifi, WifiOff, X, Check, Truck, Edit2, User, Trash2, ShoppingBag, CreditCard
 } from 'lucide-react';
 import { Button } from './Button';
 import { Order, OrderStatus } from '../types';
@@ -112,18 +112,148 @@ export const Orders: React.FC<OrdersProps> = ({ orders }) => {
         </div>
       </div>
 
-      {/* New Order Modal (Simplified) */}
+      {/* New Order Modal (Detailed POS) */}
       {showNewOrderModal && (
-        <div className="fixed inset-0 z-50 bg-white flex flex-col animate-in slide-in-from-bottom-10">
-          <div className="p-4 border-b flex justify-between items-center bg-indigo-600 text-white">
-            <h2 className="text-lg font-bold">New Order (Bill)</h2>
-            <button onClick={() => setShowNewOrderModal(false)}><X size={24}/></button>
-          </div>
-          <div className="flex-1 p-6 flex items-center justify-center text-gray-500">
-            [Billing POS Interface Placeholder]
-          </div>
-          <div className="p-4 border-t bg-gray-50">
-             <Button className="w-full py-3" onClick={() => setShowNewOrderModal(false)}>Create Bill</Button>
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-6xl h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+            
+            {/* Header */}
+            <div className="px-6 py-4 border-b bg-indigo-700 text-white flex justify-between items-center">
+              <div>
+                <h2 className="text-xl font-bold flex items-center gap-2">
+                  <ShoppingBag size={24}/> New Order (Bill)
+                </h2>
+                <p className="text-indigo-200 text-xs">Create invoice for retailers</p>
+              </div>
+              <button onClick={() => setShowNewOrderModal(false)} className="hover:bg-white/20 p-2 rounded-full transition-colors"><X size={24}/></button>
+            </div>
+
+            <div className="flex-1 flex overflow-hidden">
+              
+              {/* LEFT: Product Catalog */}
+              <div className="w-1/2 border-r bg-gray-50 flex flex-col">
+                <div className="p-4 space-y-4 border-b bg-white">
+                  {/* Retailer Selector */}
+                  <div className="relative">
+                    <User className="absolute left-3 top-3 text-gray-400" size={20}/>
+                    <select className="w-full pl-10 pr-4 py-3 border rounded-xl bg-white focus:ring-2 focus:ring-indigo-500 outline-none appearance-none font-bold text-gray-700">
+                      <option>Sharma Kirana Store (Sector 4)</option>
+                      <option>Gupta General Store</option>
+                      <option>Laxmi Super Mart</option>
+                    </select>
+                    <div className="absolute right-3 top-3.5 text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">
+                      Credit Limit: ₹50k
+                    </div>
+                  </div>
+
+                  {/* Search Products */}
+                  <div className="relative">
+                    <Search className="absolute left-3 top-3 text-gray-400" size={20}/>
+                    <input type="text" placeholder="Search Product (e.g. Parle)" className="w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  </div>
+                </div>
+
+                {/* Product List */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                  {[
+                    { name: "Parle-G Gold 100g", price: 10, stock: 500, margin: "18%" },
+                    { name: "Tata Salt 1kg", price: 25, stock: 30, margin: "5%" }, // Low Stock
+                    { name: "Maggi Masala 70g", price: 12, stock: 1000, margin: "12%" },
+                    { name: "Red Label Tea 250g", price: 120, stock: 150, margin: "8%" },
+                    { name: "Lux International", price: 35, stock: 800, margin: "15%" },
+                  ].map((p, i) => (
+                    <div key={i} className="bg-white p-3 rounded-lg border hover:border-indigo-400 cursor-pointer shadow-sm group transition-all">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h4 className="font-bold text-gray-900 group-hover:text-indigo-600">{p.name}</h4>
+                          <div className="flex gap-2 mt-1">
+                             <span className="text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">Margin: {p.margin}</span>
+                             <span className={`text-xs px-1.5 py-0.5 rounded font-bold ${p.stock < 50 ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>
+                               Stock: {p.stock}
+                             </span>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-bold text-gray-900 text-lg">₹{p.price}</p>
+                          <Button size="sm" className="mt-1 h-8 px-3">+ Add</Button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* RIGHT: Bill Summary */}
+              <div className="w-1/2 bg-white flex flex-col">
+                <div className="p-4 border-b bg-gray-50 flex justify-between items-center">
+                  <h3 className="font-bold text-gray-700">Current Bill</h3>
+                  <span className="text-xs font-medium text-gray-500">Invoice #DRAFT-001</span>
+                </div>
+
+                <div className="flex-1 overflow-y-auto p-0">
+                  <table className="w-full text-left text-sm">
+                    <thead className="bg-white sticky top-0 shadow-sm text-gray-500 font-semibold border-b">
+                      <tr>
+                        <th className="p-3 pl-4">Item</th>
+                        <th className="p-3 text-center">Qty</th>
+                        <th className="p-3 text-right">Price</th>
+                        <th className="p-3 text-right">Total</th>
+                        <th className="p-3 w-8"></th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                      {[
+                        { name: "Parle-G Gold 100g", qty: 50, price: 10, total: 500 },
+                        { name: "Maggi Masala 70g", qty: 20, price: 12, total: 240 },
+                      ].map((item, i) => (
+                        <tr key={i} className="hover:bg-indigo-50/50">
+                          <td className="p-3 pl-4 font-bold text-gray-800">{item.name}</td>
+                          <td className="p-3 text-center">
+                            <div className="flex items-center justify-center gap-2 bg-gray-100 rounded-lg px-2 py-1">
+                              <button className="text-gray-500 hover:text-indigo-600">-</button>
+                              <span className="font-bold w-4 text-center">{item.qty}</span>
+                              <button className="text-gray-500 hover:text-indigo-600">+</button>
+                            </div>
+                          </td>
+                          <td className="p-3 text-right text-gray-600">₹{item.price}</td>
+                          <td className="p-3 text-right font-bold text-gray-900">₹{item.total}</td>
+                          <td className="p-3 text-center text-gray-400 hover:text-red-500 cursor-pointer"><Trash2 size={16}/></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Bill Footer */}
+                <div className="p-6 bg-gray-50 border-t space-y-3">
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>Subtotal</span>
+                    <span>₹740.00</span>
+                  </div>
+                  <div className="flex justify-between text-sm text-green-600">
+                    <span>Discount (Offer Applied)</span>
+                    <span>- ₹0.00</span>
+                  </div>
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>GST (Included)</span>
+                    <span>₹66.60</span>
+                  </div>
+                  <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
+                    <div>
+                      <span className="block text-xs text-gray-500 font-bold uppercase">Total Payable</span>
+                      <span className="text-2xl font-extrabold text-indigo-900">₹740.00</span>
+                    </div>
+                    <div className="flex gap-3">
+                      <Button variant="outline" onClick={() => setShowNewOrderModal(false)}>Save Draft</Button>
+                      <Button onClick={() => setShowNewOrderModal(false)}>
+                        <CreditCard size={18} className="mr-2"/> Confirm Order
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       )}

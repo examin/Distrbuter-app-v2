@@ -6,22 +6,22 @@ import {
   Menu, 
   Bot, 
   IndianRupee,
-  CheckCircle,
-  Clock,
-  LogOut,
-  TrendingUp,
-  AlertTriangle,
-  ArrowDownLeft,
-  Wallet,
-  Smartphone,
-  Calendar,
-  Warehouse,
-  FileText,
-  Briefcase,
-  Bell,
-  Sparkles,
-  ChevronDown,
-  Search
+  CheckCircle, 
+  Clock, 
+  LogOut, 
+  TrendingUp, 
+  AlertTriangle, 
+  ArrowDownLeft, 
+  Wallet, 
+  Smartphone, 
+  Calendar, 
+  Warehouse, 
+  FileText, 
+  Briefcase, 
+  Bell, 
+  Sparkles, 
+  ChevronDown, 
+  Search 
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { APP_LABELS, MOCK_ORDERS, MOCK_PRODUCTS, MOCK_RETAILERS, MOCK_TRANSACTIONS, MOCK_GODOWNS, MOCK_COMPANIES, MOCK_STAFF } from './constants';
@@ -36,6 +36,7 @@ import { Payments } from './components/Payments';
 import { Users } from './components/Users';
 import { GSTCenter } from './components/GSTCenter';
 import { SmartInsights } from './components/SmartInsights';
+import { Website } from './components/Website';
 
 // --- Sub-Components ---
 
@@ -74,8 +75,14 @@ const LoginScreen = ({ onLogin }: { onLogin: () => void }) => {
               <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
               <div className="relative mt-1">
                 <Smartphone className="absolute left-3 top-3 text-gray-400" size={20} />
-                <input required type="tel" className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" 
-                  placeholder="98765 43210" value={phone} onChange={e => setPhone(e.target.value)} />
+                <input 
+                  required 
+                  type="tel" 
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900 placeholder-gray-400 transition-all" 
+                  placeholder="98765 43210" 
+                  value={phone} 
+                  onChange={e => setPhone(e.target.value)} 
+                />
               </div>
             </div>
             <Button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-700" isLoading={loading}>Send OTP</Button>
@@ -90,8 +97,14 @@ const LoginScreen = ({ onLogin }: { onLogin: () => void }) => {
               <label className="block text-sm font-medium text-gray-700">Enter OTP</label>
               <div className="relative mt-1">
                 <div className="absolute left-3 top-3 text-gray-400 font-bold">🔒</div>
-                <input required type="text" className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none tracking-widest text-lg" 
-                  placeholder="1 2 3 4" value={otp} onChange={e => setOtp(e.target.value)} />
+                <input 
+                  required 
+                  type="text" 
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none tracking-widest text-lg bg-white text-gray-900 placeholder-gray-400 transition-all" 
+                  placeholder="1 2 3 4" 
+                  value={otp} 
+                  onChange={e => setOtp(e.target.value)} 
+                />
               </div>
             </div>
             <Button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-700" isLoading={loading}>Verify & Login</Button>
@@ -141,7 +154,10 @@ const MetricCard = ({ title, value, subtext, icon: Icon, type, actionLabel, onAc
 // --- Main App Component ---
 
 const App: React.FC = () => {
+  // State for View Management
+  const [showWebsite, setShowWebsite] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   const [currentRole, setCurrentRole] = useState<Role>(Role.ADMIN);
   const [view, setView] = useState<'dashboard' | 'orders' | 'companies' | 'inventory' | 'retailers' | 'payments' | 'staff' | 'gst' | 'insights'>('dashboard');
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -167,6 +183,14 @@ const App: React.FC = () => {
      alert(`Collected ₹${amount} via ${mode}`);
   };
 
+  // --- Render Flow Logic ---
+  
+  // 1. Show Website First
+  if (showWebsite && !isAuthenticated) {
+    return <Website onLoginClick={() => setShowWebsite(false)} />;
+  }
+
+  // 2. Show Login Screen if Website closed but not auth
   if (!isAuthenticated) {
     return <LoginScreen onLogin={() => setIsAuthenticated(true)} />;
   }
@@ -177,7 +201,7 @@ const App: React.FC = () => {
       <div className="flex flex-col h-full">
         {/* Logo Area */}
         <div className="p-6 flex items-center gap-3">
-          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer" onClick={() => { setIsAuthenticated(false); setShowWebsite(true); }}>
             <span className="text-xl font-bold text-[#1e1b4b] tracking-tighter">VM</span>
           </div>
           <div className="leading-tight">
