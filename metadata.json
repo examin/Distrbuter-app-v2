@@ -1,0 +1,9 @@
+{
+  "name": "Vyapaar Mitra",
+  "description": "Offline-first distributor management platform for Indian businesses. Manages orders, inventory, billing, and staff.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
