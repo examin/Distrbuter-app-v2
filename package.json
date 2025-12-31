@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=distrbuter-app-v2",
+    "deploy:script": "./deploy.sh"
   },
   "dependencies": {
     "react-dom": "^19.2.3",
